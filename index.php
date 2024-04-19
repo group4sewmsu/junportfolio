@@ -38,9 +38,27 @@ include_once 'connection.php';
             <!--=============== HEADER SECTION ===============-->
 
             <section class="header">
-                <img class="header-img"
-                    src="https://avatars.githubusercontent.com/u/61404085?v=4"
-                    alt="" />
+                <img class="header-img">
+
+                    <?php
+                    // Retrieve the latest uploaded image
+                    $sql = "SELECT image_data, image_type FROM images ORDER BY id DESC LIMIT 1";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $imageData = $row['image_data'];
+                        $imageType = $row['image_type'];
+                        $base64 = base64_encode($imageData);
+                        $src = "data:image/" . $imageType . ";base64," . $base64;
+                        echo "<img src='$src' '><br>";
+                    } else {
+                        echo "<h3>No image uploaded yet.</h3>";
+                    }
+
+                    $conn->close();
+                    ?>
+
                 <h1>Joseph&nbsp;L.&nbsp;Harun</h1>
                 <h2>IT&nbsp;Analyst</h2>
                 <div class="socials">
@@ -60,7 +78,23 @@ include_once 'connection.php';
                 <!--=============== HOME ===============-->
 
                 <section class="content-card home" id="welcome-section">
-                    <h1>Hello, I am Joseph L. Harun</h1>
+                    <h1>
+                        <div class="animated-content">
+                            <?php
+                            // Retrieve the latest uploaded animated content
+                            $sql = "SELECT content FROM animated_content ORDER BY id DESC LIMIT 1";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $content = $row['content'];
+                                echo $content;
+                            } else {
+                                echo "<h3>No animated content uploaded yet.</h3>";
+                            }
+                            ?>
+                        </div>
+                    </h1>
                 </section>
 
                 <!--=============== ABOUT ME ===============-->
@@ -243,3 +277,8 @@ include_once 'connection.php';
 </body>
 
 </html>
+
+<?php
+// Close the database connection after all queries are executed
+$conn->close();
+?>
