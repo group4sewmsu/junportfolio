@@ -56,7 +56,6 @@ include_once 'connection.php';
                         echo "<h3>No image uploaded yet.</h3>";
                     }
 
-                    $conn->close();
                     ?>
 
                 <h1>Joseph&nbsp;L.&nbsp;Harun</h1>
@@ -80,25 +79,23 @@ include_once 'connection.php';
                 <section class="content-card home" id="welcome-section">
                     <h1>
 
-                            <?php
+                        <?php
                                 // Retrieve the latest uploaded media
-                                $sql = "SELECT content_data, content_type FROM media ORDER BY id DESC LIMIT 1";
+                                $sql = "SELECT media_data, media_type FROM media ORDER BY id DESC LIMIT 1";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
                                     $row = $result->fetch_assoc();
                                     $mediaData = $row['media_data'];
                                     $mediaType = $row['media_type'];
-                                    $base64 = base64_encode($imageData);
-                                    $src = "data:media/" . $contentType . ";base64," . $base64;
-                                    echo "<media src='$src' '><br>";
+                                    $base64 = base64_encode($mediaData);
+                                    $src = "data:$mediaType;base64," . $base64;
+                                    echo "<media src='$src'><br>";
                                 } else {
                                     echo "<h3>No media uploaded yet.</h3>";
                                 }
-
-                                $conn->close();
                             ?>
-                            
+
                     </h1>
                 </section>
 
@@ -108,7 +105,7 @@ include_once 'connection.php';
                     <h1>About me</h1>
                     <div class="about-item about-me">
                         <p>
-                            Hi, I'm Naem Azam, a passionate self-taught Programmer, an open-source enthusiast, and a maintainer. My passion for Systems lies in dreaming up ideas and making them come true with elegant interfaces.
+                            Hi, I'm Joseph Harun, a passionate self-taught Programmer, an open-source enthusiast, and a maintainer. My passion for Systems lies in dreaming up ideas and making them come true with elegant interfaces.
                         </p>
                         <p>
                             I’m a research scientist working to better understand About AI. My expertise includes Linux System Administration, IT Support Specialist, Web development, and implementation of AI research tools.
@@ -283,3 +280,7 @@ include_once 'connection.php';
 
 </html>
 
+<?php
+// Close the database connection after all queries are executed
+$conn->close();
+?>
