@@ -79,21 +79,26 @@ include_once 'connection.php';
 
                 <section class="content-card home" id="welcome-section">
                     <h1>
-                        <div class="animated-content">
-                            <?php
-                            // Retrieve the latest uploaded animated content
-                            $sql = "SELECT content FROM animated_content ORDER BY id DESC LIMIT 1";
-                            $result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                $row = $result->fetch_assoc();
-                                $content = $row['content'];
-                                echo $content;
-                            } else {
-                                echo "<h3>No animated content uploaded yet.</h3>";
-                            }
+                            <?php
+                                // Retrieve the latest uploaded media
+                                $sql = "SELECT content_data, content_type FROM media ORDER BY id DESC LIMIT 1";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    $row = $result->fetch_assoc();
+                                    $mediaData = $row['media_data'];
+                                    $mediaType = $row['media_type'];
+                                    $base64 = base64_encode($imageData);
+                                    $src = "data:media/" . $contentType . ";base64," . $base64;
+                                    echo "<media src='$src' '><br>";
+                                } else {
+                                    echo "<h3>No media uploaded yet.</h3>";
+                                }
+
+                                $conn->close();
                             ?>
-                        </div>
+                            
                     </h1>
                 </section>
 
@@ -278,7 +283,3 @@ include_once 'connection.php';
 
 </html>
 
-<?php
-// Close the database connection after all queries are executed
-$conn->close();
-?>
