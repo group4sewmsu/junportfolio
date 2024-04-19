@@ -40,8 +40,8 @@ include_once 'connection.php';
                 <img class="header-img"
                     src="https://avatars.githubusercontent.com/u/61404085?v=4"
                     alt="" />
-                <h1>Joseph L. Harun</h1>
-                <h2>IT Analyst</h2>
+                <h1>Joseph&nbsp;L.&nbsp;Harun</h1>
+                <h2>IT&nbsp;Analyst</h2>
                 <div class="socials">
                     <a href="#" target="_blank" class="fa-brands fa-linkedin-in" id="profile-link"></a>
                     <a href="#" target="_blank" class="fa-brands fa-github"></a>
