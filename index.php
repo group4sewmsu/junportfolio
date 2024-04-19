@@ -10,6 +10,7 @@ include_once 'connection.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JunPortfolio</title>
+    <link rel="icon" type="image/x-icon" href="/img/JunJutsu3x3.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -43,9 +44,12 @@ include_once 'connection.php';
                 <h1>Joseph&nbsp;L.&nbsp;Harun</h1>
                 <h2>IT&nbsp;Analyst</h2>
                 <div class="socials">
-                    <a href="#" target="_blank" class="fa-brands fa-linkedin-in" id="profile-link"></a>
+                    <a href="https://www.linkedin.com/in/joseph-harun/" target="_blank" class="fa-brands fa-linkedin-in" id="profile-link"></a>
+                    <a href="#" target="_blank" class="fa-brands fa-facebook"></a>
+                    <a href="#" target="_blank" class="fa-brands fa-facebook-messenger"></a>
+                    <a href="#" target="_blank" class="fa-brands fa-telegram"></a>
+                    <a href="#" target="_blank" class="fa-brands fa-whatsapp"></a>
                     <a href="#" target="_blank" class="fa-brands fa-github"></a>
-                    <a href="#" target="_blank" class="fa-brands fa-codepen"></a>
                 </div>
                 <a href="" class="cta">DownIoad CV</a>
             </section>
