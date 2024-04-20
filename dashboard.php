@@ -56,89 +56,9 @@ if (isset($_POST['logout'])) {
         <a href="#users" class="menu-icon fa-solid fa-users"></a>
         <a href="#images" class="menu-icon fa-solid fa-images"></a>
         <a href="$_POST['logout']" class="menu-icon fa-solid fa-person-running"></a>
-      </div>
-
-      <div class="portfolio">
-        <!-- Header Information Section -->
-        <section class="content-card header-info" id="header-info">
-          <h2>Header Information</h2>
-          <?php include_once('header_info_crud.php'); ?>
-        </section>
-
-        <!-- About Section -->
-        <section class="content-card about" id="about">
-          <h2>About</h2>
-          <?php include_once('about_crud.php'); ?>
-        </section>
-
-        <!-- Experiences & Projects -->
-        <div class="row">
-          <!-- Experiences Section -->
-          <section class="content-card experiences" id="experiences">
-            <h2>Experiences</h2>
-            <?php include_once('experience_crud.php'); ?>
-          </section>
-
-          <!-- Projects Section -->
-          <section class="content-card projects" id="projects">
-            <h2>Projects</h2>
-            <?php include_once('projects_crud.php'); ?>
-          </section>
-        </div>
-
-        <!-- Skills & Languages -->
-        <div class="row">
-          <!-- Skills Section -->
-          <section class="content-card skills" id="skills">
-            <h2>Skills</h2>
-            <?php include_once('skills_crud.php'); ?>
-          </section>
-
-          <!-- Languages Section -->
-          <section class="content-card languages" id="languages">
-            <h2>Languages</h2>
-            <?php include_once('languages_crud.php'); ?>
-          </section>
-        </div>
-
-        <!-- Media & Messages -->
-        <div class="row">
-          <!-- Media Section -->
-          <section class="content-card media" id="media">
-            <h2>Media</h2>
-            <?php include_once('media_crud.php'); ?>
-          </section>
-
-          <!-- Messages Section -->
-          <section class="content-card messages" id="messages">
-            <h2>Messages</h2>
-            <?php include_once('messages_crud.php'); ?>
-          </section>
-        </div>
-
-        <!-- Users & Images -->
-        <div class="row">
-          <!-- Users Section -->
-          <section class="content-card users" id="users">
-            <h2>Users</h2>
-            <?php include_once('users_crud.php'); ?>
-          </section>
-
-          <!-- Images Section -->
-          <section class="content-card images" id="images">
-            <h2>Images</h2>
-            <?php include_once('images_crud.php'); ?>
-          </section>
-        </div>
-      </div>
-
-
-      <!-- Footer -->
-      <footer>
-        <!-- Footer content -->
-      </footer>
-
-  </body>
+    </div>
+    
+</body>
 
 </html>
 
