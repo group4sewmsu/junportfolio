@@ -110,7 +110,6 @@ h2 {
 
 .portfolio {
     display: flex;
-    flex-direction: column; /* Adjust layout to stack sections vertically */
     background: var(--background-color-2);
     width: 85vw; /* Adjust width for responsiveness */
     max-width: 90%; /* Add max-width for better flexibility */
@@ -122,13 +121,12 @@ h2 {
 
 .row {
     display: flex;
-    flex-wrap: wrap; /* Allow sections to wrap to the next row */
-    justify-content: space-between; /* Distribute sections evenly */
+    justify-content: center; /* Center the content horizontally */
     margin-bottom: 20px; /* Add margin between rows */
 }
 
 .content-card {
-    flex: 0 0 calc(50% - 10px); /* Adjust width of content cards */
+    width: 100%; /* Adjust width of content cards */
     margin-bottom: 20px; /* Add margin between content cards */
 }
 
