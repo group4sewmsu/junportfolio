@@ -5,42 +5,42 @@ include_once 'db_connection.php';
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JunPortfolio</title>
     <link rel="icon" type="image/x-icon" href="/img/JunJutsu3x3.png">
     <link rel="stylesheet" href="style.css">
-</head>
+  </head>
 
-<body>
+  <body>
     <!--=============== FONT AWESOME ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
     <nav id="navbar" class="navbar"><a href="#"></a></nav>
 
     <div class="container">
-        <!--=============== NAVIGATION MENU ===============-->
+      <!--=============== NAVIGATION MENU ===============-->
 
-        <div class="menu">
-            <a href="#welcome-section" class="menu-icon fa-solid fa-house"></a>
-            <a href="#about" class="menu-icon fa-solid fa-user"></a>
-            <a href="#projects" class="menu-icon fa-solid fa-code"></a>
-            <a href="#experience" class="menu-icon fa-solid fa-briefcase"></a>
-            <a href="#contact" class="menu-icon fa-solid fa-envelope"></a>
-            <a href="login.php" class="menu-icon fa-solid fa-user-secret"></a>
-        </div>
+      <div class="menu">
+        <a href="#welcome-section" class="menu-icon fa-solid fa-house"></a>
+        <a href="#about" class="menu-icon fa-solid fa-user"></a>
+        <a href="#projects" class="menu-icon fa-solid fa-code"></a>
+        <a href="#experience" class="menu-icon fa-solid fa-briefcase"></a>
+        <a href="#contact" class="menu-icon fa-solid fa-envelope"></a>
+        <a href="login.php" class="menu-icon fa-solid fa-user-secret"></a>
+      </div>
 
-        <!--=============== MAIN "WINDOW" ===============-->
+      <!--=============== MAIN "WINDOW" ===============-->
 
-        <div class="portfolio">
-            <!--=============== HEADER SECTION ===============-->
+      <div class="portfolio">
+        <!--=============== HEADER SECTION ===============-->
 
-            <section class="header">
-                <img class="header-img">
+        <section class="header">
+          <img class="header-img">
 
-                    <?php
+          <?php
                     // Retrieve the latest uploaded image
                     $sql = "SELECT image_data, image_type FROM images ORDER BY id DESC LIMIT 1";
                     $result = $conn->query($sql);
@@ -58,10 +58,10 @@ include_once 'db_connection.php';
 
                     ?>
 
-                <h1>Joseph&nbsp;L.&nbsp;Harun</h1>
-                <h2>IT&nbsp;Analyst</h2>
+          <h1>Joseph&nbsp;L.&nbsp;Harun</h1>
+          <h2>IT&nbsp;Analyst</h2>
 
-                    <?php
+          <?php
                         // Social Media Links
                         $sql = "SELECT linkedin_link, facebook_link, messenger_link, telegram_link, whatsapp_link, github_link FROM header_info";
                         $result = $conn->query($sql);
@@ -70,28 +70,28 @@ include_once 'db_connection.php';
                         // Output the HTML with the fetched social media links
                     ?>
 
-                <div class="socials">
-                    <a href="<?php echo $social_links['linkedin_link']; ?>" target="_blank" class="fab fa-linkedin-in"></a>
-                    <a href="<?php echo $social_links['facebook_link']; ?>" target="_blank" class="fab fa-facebook"></a>
-                    <a href="<?php echo $social_links['messenger_link']; ?>" target="_blank" class="fab fa-facebook-messenger"></a>
-                    <a href="<?php echo $social_links['telegram_link']; ?>" target="_blank" class="fab fa-telegram"></a>
-                    <a href="<?php echo $social_links['whatsapp_link']; ?>" target="_blank" class="fab fa-whatsapp"></a>
-                    <a href="<?php echo $social_links['github_link']; ?>" target="_blank" class="fab fa-github"></a>
-                </div>
+          <div class="socials">
+            <a href="<?php echo $social_links['linkedin_link']; ?>" target="_blank" class="fab fa-linkedin-in"></a>
+            <a href="<?php echo $social_links['facebook_link']; ?>" target="_blank" class="fab fa-facebook"></a>
+            <a href="<?php echo $social_links['messenger_link']; ?>" target="_blank" class="fab fa-facebook-messenger"></a>
+            <a href="<?php echo $social_links['telegram_link']; ?>" target="_blank" class="fab fa-telegram"></a>
+            <a href="<?php echo $social_links['whatsapp_link']; ?>" target="_blank" class="fab fa-whatsapp"></a>
+            <a href="<?php echo $social_links['github_link']; ?>" target="_blank" class="fab fa-github"></a>
+          </div>
 
 
-                <a href="" class="cta">Download CV</a>
-            </section>
+          <a href="" class="cta">Download CV</a>
+        </section>
 
-            <!--=============== CONTENT SECTION ===============-->
+        <!--=============== CONTENT SECTION ===============-->
 
-            <div class="content">
-                <!--=============== HOME ===============-->
+        <div class="content">
+          <!--=============== HOME ===============-->
 
-                <section class="content-card home" id="welcome-section">
-                    <h1>
+          <section class="content-card home" id="welcome-section">
+            <h1>
 
-                        <?php
+              <?php
                                 // Retrieve the latest uploaded media
                                 $sql = "SELECT media_data, media_type FROM media ORDER BY id DESC LIMIT 1";
                                 $result = $conn->query($sql);
@@ -108,25 +108,25 @@ include_once 'db_connection.php';
                                 }
                             ?>
 
-                    </h1>
-                </section>
+            </h1>
+          </section>
 
-                <!--=============== ABOUT ME ===============-->
+          <!--=============== ABOUT ME ===============-->
 
-                <section class="content-card about" id="about">
-                    <h1>About me</h1>
-                    <div class="about-item about-me">
-                        <p>
-                            Hi, I'm Joseph Harun, a passionate self-taught Programmer, an open-source enthusiast, and a maintainer. My passion for Systems lies in dreaming up ideas and making them come true with elegant interfaces.
-                        </p>
-                        <p>
-                            I’m a research scientist working to better understand About AI. My expertise includes Linux System Administration, IT Support Specialist, Web development, and implementation of AI research tools.
-                        </p>
-                    </div>
-                    <div class="col-2">
-                        <div class="about-item skills">
-                            <h1>Skills</h1>
-                            <?php
+          <section class="content-card about" id="about">
+            <h1>About me</h1>
+            <div class="about-item about-me">
+              <p>
+                Hi, I'm Joseph Harun, a passionate self-taught Programmer, an open-source enthusiast, and a maintainer. My passion for Systems lies in dreaming up ideas and making them come true with elegant interfaces.
+              </p>
+              <p>
+                I’m a research scientist working to better understand About AI. My expertise includes Linux System Administration, IT Support Specialist, Web development, and implementation of AI research tools.
+              </p>
+            </div>
+            <div class="col-2">
+              <div class="about-item skills">
+                <h1>Skills</h1>
+                <?php
                                 $sql = "SELECT skill_name FROM skills";
                                 $result = $conn->query($sql);
 
@@ -138,11 +138,11 @@ include_once 'db_connection.php';
                                     echo "<p>No skills available.</p>";
                                 }
                             ?>
-                        </div>
+              </div>
 
-                        <div class="about-item languages">
-                            <h1>Languages</h1>
-                            <?php
+              <div class="about-item languages">
+                <h1>Languages</h1>
+                <?php
                                 $sql = "SELECT language_name FROM languages";
                                 $result = $conn->query($sql);
 
@@ -157,16 +157,16 @@ include_once 'db_connection.php';
                                     echo "<p>No languages available.</p>";
                                 }
                             ?>
-                        </div>
-                    </div>
-                </section>
+              </div>
+            </div>
+          </section>
 
-                <!--=============== PROJECTS ===============-->
+          <!--=============== PROJECTS ===============-->
 
-                <section class="content-card projects" id="projects">
-                    <h1>Projects</h1>
-                    <div class="col-2 project-list">
-                        <?php
+          <section class="content-card projects" id="projects">
+            <h1>Projects</h1>
+            <div class="col-2 project-list">
+              <?php
                             $sql = "SELECT title, description, image_project, image_type FROM projects";
                             $result = $conn->query($sql);
 
@@ -190,17 +190,17 @@ include_once 'db_connection.php';
                                 echo "<p>No projects available.</p>";
                             }
                         ?>
-                    </div>
-                    <a href="https://github.com/group4sewmsu">see more...</a>
-                </section>
+            </div>
+            <a href="https://github.com/group4sewmsu">see more...</a>
+          </section>
 
-                <!--=============== EXPERIENCE ===============-->
+          <!--=============== EXPERIENCE ===============-->
 
-                <section class="content-card experience" id="experience">
-                    <h1>Experience</h1>
-                    <div class="timeline">
-                        <div class="timeline-items">
-                            <?php
+          <section class="content-card experience" id="experience">
+            <h1>Experience</h1>
+            <div class="timeline">
+              <div class="timeline-items">
+                <?php
                                 $sql = "SELECT start_date, end_date, position, company, description FROM experience";
                                 $result = $conn->query($sql);
 
@@ -219,37 +219,36 @@ include_once 'db_connection.php';
                                     echo "<p>No experience available.</p>";
                                 }
                             ?>
-                        </div>
-                    </div>
-                </section>
-
-                <!--=============== CONTACT ===============-->
-
-                <section class="content-card contact" id="contact">
-                    <h1>Contact</h1>
-                    <form class="form" id="form" action="#">
-                        <div class="input-box">
-                            <input type="text" class="text-input" name="name" placeholder="Name" />
-                        </div>
-                        <div class="input-box">
-                            <input type="email" class="text-input" name="email" id="email" placeholder="Email" />
-                        </div>
-                        <div class="input-box">
-                            <input type="subject" class="text-input" name="subject" id="subject"
-                                placeholder="Subject" />
-                        </div>
-                        <div class="input-box">
-                            <textarea name="text" class="message" placeholder="Message..."></textarea>
-                        </div>
-                        <div class="input-box">
-                            <input type="submit" class="submit-btn" id="submit" value="submit" />
-                        </div>
-                    </form>
-                </section>
+              </div>
             </div>
+          </section>
+
+          <!--=============== CONTACT ===============-->
+
+          <section class="content-card contact" id="contact">
+            <h1>Contact</h1>
+            <form class="form" id="form" action="#">
+              <div class="input-box">
+                <input type="text" class="text-input" name="name" placeholder="Name" />
+              </div>
+              <div class="input-box">
+                <input type="email" class="text-input" name="email" id="email" placeholder="Email" />
+              </div>
+              <div class="input-box">
+                <input type="subject" class="text-input" name="subject" id="subject" placeholder="Subject" />
+              </div>
+              <div class="input-box">
+                <textarea name="text" class="message" placeholder="Message..."></textarea>
+              </div>
+              <div class="input-box">
+                <input type="submit" class="submit-btn" id="submit" value="submit" />
+              </div>
+            </form>
+          </section>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 
 </html>
 
