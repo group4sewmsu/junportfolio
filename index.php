@@ -167,13 +167,17 @@ include_once 'db_connection.php';
                     <h1>Projects</h1>
                     <div class="col-2 project-list">
                         <?php
-                            $sql = "SELECT title, description, image_path FROM projects";
+                            $sql = "SELECT title, description, image_project, image_type FROM projects";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
                                     echo "<div class='project-tile'>";
-                                    echo "<img src='" . $row['image_path'] . "' alt='' />";
+                                    $imageData = $row['image_project'];
+                                    $imageType = $row['image_type'];
+                                    $base64 = base64_encode($imageData);
+                                    $src = "data:image/" . $imageType . ";base64," . $base64;
+                                    echo "<img src='$src' '><br>";
                                     echo "<div class='overlay'>";
                                     echo "<div class='project-description'>";
                                     echo "<h3>" . $row['title'] . "</h3>";
