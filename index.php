@@ -60,14 +60,26 @@ include_once 'db_connection.php';
 
                 <h1>Joseph&nbsp;L.&nbsp;Harun</h1>
                 <h2>IT&nbsp;Analyst</h2>
+
+                    <?php
+                        // Social Media Links
+                        $sql = "SELECT linkedin_link, facebook_link, messenger_link, telegram_link, whatsapp_link, github_link FROM header_info";
+                        $result = $conn->query($sql);
+                        $social_links = $result->fetch_assoc(); // Fetch the social media links
+
+                        // Output the HTML with the fetched social media links
+                    ?>
+
                 <div class="socials">
-                    <a href="<?php echo $row['linkedin_link']; ?>" target="_blank" class="fa-brands fa-linkedin-in" id="profile-link"></a>
-                    <a href="<?php echo $row['facebook_link']; ?>" target="_blank" class="fa-brands fa-facebook"></a>
-                    <a href="<?php echo $row['messenger_link']; ?>" target="_blank" class="fa-brands fa-facebook-messenger"></a>
-                    <a href="<?php echo $row['telegram_link']; ?>" target="_blank" class="fa-brands fa-telegram"></a>
-                    <a href="<?php echo $row['whatsapp_link']; ?>" target="_blank" class="fa-brands fa-whatsapp"></a>
-                    <a href="<?php echo $row['github_link']; ?>" target="_blank" class="fa-brands fa-github"></a>
+                    <a href="<?php echo $social_links['linkedin_link']; ?>" target="_blank" class="fab fa-linkedin-in"></a>
+                    <a href="<?php echo $social_links['facebook_link']; ?>" target="_blank" class="fab fa-facebook"></a>
+                    <a href="<?php echo $social_links['messenger_link']; ?>" target="_blank" class="fab fa-facebook-messenger"></a>
+                    <a href="<?php echo $social_links['telegram_link']; ?>" target="_blank" class="fab fa-telegram"></a>
+                    <a href="<?php echo $social_links['whatsapp_link']; ?>" target="_blank" class="fab fa-whatsapp"></a>
+                    <a href="<?php echo $social_links['github_link']; ?>" target="_blank" class="fab fa-github"></a>
                 </div>
+
+
                 <a href="" class="cta">Download CV</a>
             </section>
 
