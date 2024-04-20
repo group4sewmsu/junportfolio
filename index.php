@@ -24,7 +24,7 @@ include_once 'db_connection.php';
         <!--=============== NAVIGATION MENU ===============-->
 
         <div class="menu">
-            <a href="index.php" class="menu-icon fa-solid fa-house"></a>
+            <a href="#welcome-section" class="menu-icon fa-solid fa-house"></a>
             <a href="#about" class="menu-icon fa-solid fa-user"></a>
             <a href="#projects" class="menu-icon fa-solid fa-code"></a>
             <a href="#experience" class="menu-icon fa-solid fa-briefcase"></a>
