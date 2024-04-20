@@ -1,16 +1,26 @@
 <?php
-include_once("db_connection.php");
+include_once 'connection.php';
+session_start(); // Start session
 
-// Start the session
-session_start();
-
-// Check if the user is logged in
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+// Check if user is logged in
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    // Redirect user to login page if not logged in
+    header("Location: login.php");
     exit;
 }
 
-// Display the dashboard content
+// Logout logic
+if (isset($_POST['logout'])) {
+    // Unset all session variables
+    $_SESSION = array();
+
+    // Destroy the session
+    session_destroy();
+
+    // Redirect to login page
+    header("Location: index.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +55,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <a href="#messages" class="menu-icon fa-solid fa-envelope"></a>
         <a href="#users" class="menu-icon fa-solid fa-users"></a>
         <a href="#images" class="menu-icon fa-solid fa-images"></a>
-        <a href="#logout" class="menu-icon fa-solid fa-person-running"></a>
+        <a href="$_POST['logout']" class="menu-icon fa-solid fa-person-running"></a>
       </div>
 
       <div class="portfolio">
