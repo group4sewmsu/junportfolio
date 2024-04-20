@@ -16,119 +16,119 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdminPanel</title>
     <link rel="icon" type="image/x-icon" href="/img/JunJutsu3x3.png">
     <link rel="stylesheet" href="style.css">
-</head>
+  </head>
 
-<body>
+  <body>
     <!--=============== FONT AWESOME ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
     <nav id="navbar" class="navbar"><a href="#"></a></nav>
 
     <div class="container">
-        <!--=============== NAVIGATION MENU ===============-->
-        <div class="menu">
-            <!-- Navigation links for different sections -->
-            <a href="#header-info" class="menu-icon fa-solid fa-address-card"></a>
-            <a href="#about" class="menu-icon fa-solid fa-user"></a>
-            <a href="#experiences" class="menu-icon fa-solid fa-briefcase"></a>
-            <a href="#projects" class="menu-icon fa-solid fa-project-diagram"></a>
-            <a href="#skills" class="menu-icon fa-solid fa-cogs"></a>
-            <a href="#languages" class="menu-icon fa-solid fa-language"></a>
-            <a href="#media" class="menu-icon fa-solid fa-photo-video"></a>
-            <a href="#messages" class="menu-icon fa-solid fa-envelope"></a>
-            <a href="#users" class="menu-icon fa-solid fa-users"></a>
-            <a href="#images" class="menu-icon fa-solid fa-images"></a>
-            <a href="#logout" class="menu-icon fa-solid fa-person-running"></a>
-        </div>
+      <!--=============== NAVIGATION MENU ===============-->
+      <div class="menu">
+        <!-- Navigation links for different sections -->
+        <a href="#header-info" class="menu-icon fa-solid fa-address-card"></a>
+        <a href="#about" class="menu-icon fa-solid fa-user"></a>
+        <a href="#experiences" class="menu-icon fa-solid fa-briefcase"></a>
+        <a href="#projects" class="menu-icon fa-solid fa-project-diagram"></a>
+        <a href="#skills" class="menu-icon fa-solid fa-cogs"></a>
+        <a href="#languages" class="menu-icon fa-solid fa-language"></a>
+        <a href="#media" class="menu-icon fa-solid fa-photo-video"></a>
+        <a href="#messages" class="menu-icon fa-solid fa-envelope"></a>
+        <a href="#users" class="menu-icon fa-solid fa-users"></a>
+        <a href="#images" class="menu-icon fa-solid fa-images"></a>
+        <a href="#logout" class="menu-icon fa-solid fa-person-running"></a>
+      </div>
 
-        <div class="portfolio">
-    <!-- Header Information Section -->
-    <section class="content-card header-info" id="header-info">
-        <h2>Header Information</h2>
-        <?php include_once('header_info_crud.php'); ?>
-    </section>
+      <div class="portfolio">
+        <!-- Header Information Section -->
+        <section class="content-card header-info" id="header-info">
+          <h2>Header Information</h2>
+          <?php include_once('header_info_crud.php'); ?>
+        </section>
 
-    <!-- About Section -->
-    <section class="content-card about" id="about">
-        <h2>About</h2>
-        <?php include_once('about_crud.php'); ?>
-    </section>
+        <!-- About Section -->
+        <section class="content-card about" id="about">
+          <h2>About</h2>
+          <?php include_once('about_crud.php'); ?>
+        </section>
 
-    <!-- Experiences & Projects -->
-    <div class="row">
-        <!-- Experiences Section -->
-        <section class="content-card experiences" id="experiences">
+        <!-- Experiences & Projects -->
+        <div class="row">
+          <!-- Experiences Section -->
+          <section class="content-card experiences" id="experiences">
             <h2>Experiences</h2>
             <?php include_once('experience_crud.php'); ?>
-        </section>
+          </section>
 
-        <!-- Projects Section -->
-        <section class="content-card projects" id="projects">
+          <!-- Projects Section -->
+          <section class="content-card projects" id="projects">
             <h2>Projects</h2>
             <?php include_once('projects_crud.php'); ?>
-        </section>
-    </div>
+          </section>
+        </div>
 
-    <!-- Skills & Languages -->
-    <div class="row">
-        <!-- Skills Section -->
-        <section class="content-card skills" id="skills">
+        <!-- Skills & Languages -->
+        <div class="row">
+          <!-- Skills Section -->
+          <section class="content-card skills" id="skills">
             <h2>Skills</h2>
             <?php include_once('skills_crud.php'); ?>
-        </section>
+          </section>
 
-        <!-- Languages Section -->
-        <section class="content-card languages" id="languages">
+          <!-- Languages Section -->
+          <section class="content-card languages" id="languages">
             <h2>Languages</h2>
             <?php include_once('languages_crud.php'); ?>
-        </section>
-    </div>
+          </section>
+        </div>
 
-    <!-- Media & Messages -->
-    <div class="row">
-        <!-- Media Section -->
-        <section class="content-card media" id="media">
+        <!-- Media & Messages -->
+        <div class="row">
+          <!-- Media Section -->
+          <section class="content-card media" id="media">
             <h2>Media</h2>
             <?php include_once('media_crud.php'); ?>
-        </section>
+          </section>
 
-        <!-- Messages Section -->
-        <section class="content-card messages" id="messages">
+          <!-- Messages Section -->
+          <section class="content-card messages" id="messages">
             <h2>Messages</h2>
             <?php include_once('messages_crud.php'); ?>
-        </section>
-    </div>
+          </section>
+        </div>
 
-    <!-- Users & Images -->
-    <div class="row">
-        <!-- Users Section -->
-        <section class="content-card users" id="users">
+        <!-- Users & Images -->
+        <div class="row">
+          <!-- Users Section -->
+          <section class="content-card users" id="users">
             <h2>Users</h2>
             <?php include_once('users_crud.php'); ?>
-        </section>
+          </section>
 
-        <!-- Images Section -->
-        <section class="content-card images" id="images">
+          <!-- Images Section -->
+          <section class="content-card images" id="images">
             <h2>Images</h2>
             <?php include_once('images_crud.php'); ?>
-        </section>
-    </div>
-</div>
+          </section>
+        </div>
+      </div>
 
 
-    <!-- Footer -->
-    <footer>
+      <!-- Footer -->
+      <footer>
         <!-- Footer content -->
-    </footer>
+      </footer>
 
-</body>
+  </body>
 
 </html>
 
