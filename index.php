@@ -1,5 +1,5 @@
 <?php
-include_once 'connection.php';
+include_once 'db_connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ include_once 'connection.php';
             <a href="#projects" class="menu-icon fa-solid fa-code"></a>
             <a href="#experience" class="menu-icon fa-solid fa-briefcase"></a>
             <a href="#contact" class="menu-icon fa-solid fa-envelope"></a>
-			<a href="login.php" class="menu-icon fa-solid fa-user-secret"></a>
+            <a href="login.php" class="menu-icon fa-solid fa-user-secret"></a>
         </div>
 
         <!--=============== MAIN "WINDOW" ===============-->
@@ -61,14 +61,14 @@ include_once 'connection.php';
                 <h1>Joseph&nbsp;L.&nbsp;Harun</h1>
                 <h2>IT&nbsp;Analyst</h2>
                 <div class="socials">
-                    <a href="https://www.linkedin.com/in/joseph-harun/" target="_blank" class="fa-brands fa-linkedin-in" id="profile-link"></a>
-                    <a href="#" target="_blank" class="fa-brands fa-facebook"></a>
-                    <a href="#" target="_blank" class="fa-brands fa-facebook-messenger"></a>
-                    <a href="#" target="_blank" class="fa-brands fa-telegram"></a>
-                    <a href="#" target="_blank" class="fa-brands fa-whatsapp"></a>
-                    <a href="#" target="_blank" class="fa-brands fa-github"></a>
+                    <a href="<?php echo $row['linkedin_link']; ?>" target="_blank" class="fa-brands fa-linkedin-in" id="profile-link"></a>
+                    <a href="<?php echo $row['facebook_link']; ?>" target="_blank" class="fa-brands fa-facebook"></a>
+                    <a href="<?php echo $row['messenger_link']; ?>" target="_blank" class="fa-brands fa-facebook-messenger"></a>
+                    <a href="<?php echo $row['telegram_link']; ?>" target="_blank" class="fa-brands fa-telegram"></a>
+                    <a href="<?php echo $row['whatsapp_link']; ?>" target="_blank" class="fa-brands fa-whatsapp"></a>
+                    <a href="<?php echo $row['github_link']; ?>" target="_blank" class="fa-brands fa-github"></a>
                 </div>
-                <a href="" class="cta">DownIoad CV</a>
+                <a href="" class="cta">Download CV</a>
             </section>
 
             <!--=============== CONTENT SECTION ===============-->
@@ -114,34 +114,37 @@ include_once 'connection.php';
                     <div class="col-2">
                         <div class="about-item skills">
                             <h1>Skills</h1>
-                            <span class="skill">HTML</span>
-                            <span class="skill">CSS</span>
-                            <span class="skill">JavaScript</span>
-                            <span class="skill">Node.js</span>
-                            <span class="skill">React</span>
-                            <span class="skill">SQL</span>
-                            <span class="skill">Git</span>
-                            <span class="skill">API</span>
-                            <span class="skill">Unix/Linux</span>
-                            <span class="skill">Jira</span>
-                            <span class="skill">Confluence</span>
-                            <span class="skill">Figma</span>
+                            <?php
+                                $sql = "SELECT skill_name FROM skills";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<span class='skill'>" . $row['skill_name'] . "</span>";
+                                    }
+                                } else {
+                                    echo "<p>No skills available.</p>";
+                                }
+                            ?>
                         </div>
 
                         <div class="about-item languages">
                             <h1>Languages</h1>
-                            <div class="language">
-                                <p>Bangla</p>
-                                <span class="bar"><span class="bangla"></span></span>
-                            </div>
-                            <div class="language">
-                                <p>English</p>
-                                <span class="bar"><span class="english"></span></span>
-                            </div>
-                            <div class="language">
-                                <p>Chinese</p>
-                                <span class="bar"><span class="chinese"></span></span>
-                            </div>
+                            <?php
+                                $sql = "SELECT language_name FROM languages";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<div class='language'>";
+                                        echo "<p>" . $row['language_name'] . "</p>";
+                                        echo "<span class='bar'><span class='" . $row['language_name'] . "'></span></span>";
+                                        echo "</div>";
+                                    }
+                                } else {
+                                    echo "<p>No languages available.</p>";
+                                }
+                            ?>
                         </div>
                     </div>
                 </section>
@@ -151,58 +154,26 @@ include_once 'connection.php';
                 <section class="content-card projects" id="projects">
                     <h1>Projects</h1>
                     <div class="col-2 project-list">
-                        <div class="project-tile">
-                            <img src="./img/1.PNG"
-                                alt="" />
-                            <div class="overlay">
-                                <div class="project-description">
-                                    <h3>Project 1</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Nisi aperiam voluptate accusamus velit omnis.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-tile">
-                            <img src="./img/2.PNG"
-                                alt="" />
-                            <div class="overlay">
-                                <div class="project-description">
-                                    <h3>Project 2</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Nisi aperiam voluptate accusamus velit omnis.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-tile">
-                            <img src="./img/3.jpg"
-                                alt="" />
-                            <div class="overlay">
-                                <div class="project-description">
-                                    <h3>Project 3</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Nisi aperiam voluptate accusamus velit omnis.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-tile">
-                            <img src="./img/4.jpg"
-                                alt="" />
-                            <div class="overlay">
-                                <div class="project-description">
-                                    <h3>Project 4</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Nisi aperiam voluptate accusamus velit omnis.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                            $sql = "SELECT title, description, image_path FROM projects";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<div class='project-tile'>";
+                                    echo "<img src='" . $row['image_path'] . "' alt='' />";
+                                    echo "<div class='overlay'>";
+                                    echo "<div class='project-description'>";
+                                    echo "<h3>" . $row['title'] . "</h3>";
+                                    echo "<p>" . $row['description'] . "</p>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                }
+                            } else {
+                                echo "<p>No projects available.</p>";
+                            }
+                        ?>
                     </div>
                     <a href="https://github.com/group4sewmsu">see more...</a>
                 </section>
@@ -213,39 +184,25 @@ include_once 'connection.php';
                     <h1>Experience</h1>
                     <div class="timeline">
                         <div class="timeline-items">
-                            <div class="timeline-item">
-                                <div class="timeline-date">2022 - now</div>
-                                <div class="timeline-content">
-                                    <h3>timeline item 1</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Ab iusto accusantium nostrum eligendi debitis quisquam.
-                                        Corporis at voluptatem culpa officia.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-date">2015 - 2022</div>
-                                <div class="timeline-content">
-                                    <h3>timeline item 2</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Ab iusto accusantium nostrum eligendi debitis quisquam.
-                                        Corporis at voluptatem culpa officia.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-date">2014 - 2015</div>
-                                <div class="timeline-content">
-                                    <h3>timeline item 3</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Ab iusto accusantium nostrum eligendi debitis quisquam.
-                                        Corporis at voluptatem culpa officia.
-                                    </p>
-                                </div>
-                            </div>
+                            <?php
+                                $sql = "SELECT start_date, end_date, position, company, description FROM experience";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<div class='timeline-item'>";
+                                        echo "<div class='timeline-date'>" . $row['start_date'] . " - " . $row['end_date'] . "</div>";
+                                        echo "<div class='timeline-content'>";
+                                        echo "<h3>" . $row['position'] . "</h3>";
+                                        echo "<p>" . $row['company'] . "</p>";
+                                        echo "<p>" . $row['description'] . "</p>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                    }
+                                } else {
+                                    echo "<p>No experience available.</p>";
+                                }
+                            ?>
                         </div>
                     </div>
                 </section>
