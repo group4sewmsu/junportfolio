@@ -116,13 +116,18 @@ include_once 'db_connection.php';
           <section class="content-card about" id="about">
             <h1>About me</h1>
             <div class="about-item about-me">
-              <p>
-                Hi, I'm Joseph Harun, a passionate self-taught Programmer, an open-source enthusiast, and a maintainer. My passion for Systems lies in dreaming up ideas and making them come true with elegant interfaces.
-              </p>
-              <p>
-                I’m a research scientist working to better understand About AI. My expertise includes Linux System Administration, IT Support Specialist, Web development, and implementation of AI research tools.
-              </p>
-            </div>
+                    <?php
+                        // Fetch About Me title and description
+                        $about_sql = "SELECT about_text FROM about LIMIT 1";
+                        $about_result = $conn->query($about_sql);
+                        if ($about_result->num_rows > 0) {
+                            $about_row = $about_result->fetch_assoc();
+                            echo "<h2>" . $about_row['about_text'] . "</h2>";
+                        } else {
+                            echo "<p>No about information available.</p>";
+                        }
+                    ?>
+             </div>
             <div class="col-2">
               <div class="about-item skills">
                 <h1>Skills</h1>
