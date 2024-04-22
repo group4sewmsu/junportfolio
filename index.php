@@ -101,7 +101,7 @@ include_once 'db_connection.php';
                                     $mediaData = $row['media_data'];
                                     $mediaType = $row['media_type'];
                                     $base64 = base64_encode($mediaData);
-                                    $src = "data:$mediaType;base64," . $base64;
+                                    $src = "data:gif$mediaType;base64," . $base64;
                                     echo "<media src='$src'><br>";
                                 } else {
                                     echo "<h3>No media uploaded yet.</h3>";
