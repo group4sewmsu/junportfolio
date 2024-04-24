@@ -1,14 +1,6 @@
 <?php
-// Include the database connection file
 include_once 'db_connection.php';
-
-// Open the database connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check the database connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +29,7 @@ if ($conn->connect_error) {
         <a href="#projects" class="menu-icon fa-solid fa-code"></a>
         <a href="#experience" class="menu-icon fa-solid fa-briefcase"></a>
         <a href="#contact" class="menu-icon fa-solid fa-envelope"></a>
-        <a href="logout.php" class="menu-icon fa-solid fa-right-from-bracket"></a>
+        <a href="login.php" class="menu-icon fa-solid fa-user-secret"></a>
       </div>
 
       <!--=============== MAIN "WINDOW" ===============-->
@@ -48,12 +40,50 @@ if ($conn->connect_error) {
         <section class="header">
           <img class="header-img">
 
-            <?php
-                include_once 'header_img_crud.php';
-            ?>
+          <?php
+                    // Retrieve the latest uploaded image
+                    $sql = "SELECT image_data, image_type FROM images ORDER BY id DESC LIMIT 1";
+                    $result = $conn->query($sql);
 
-          <h1>Joseph&nbsp;L.&nbsp;Harun</h1>
-          <h2>IT&nbsp;Analyst</h2>
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $imageData = $row['image_data'];
+                        $imageType = $row['image_type'];
+                        $base64 = base64_encode($imageData);
+                        $src = "data:image/" . $imageType . ";base64," . $base64;
+                        echo "<img src='$src' '><br>";
+                    } else {
+                        echo "<h3>No image uploaded yet.</h3>";
+                    }
+
+                    ?>
+
+          <h1>
+                    <?php
+                      // Fetch name
+                      $name_sql = "SELECT name FROM header_info LIMIT 1";
+                      $name_result = $conn->query($name_sql);
+                      if ($name_result->num_rows > 0) {
+                          $name_row = $name_result->fetch_assoc();
+                          echo "<h1>" . $name_row['name'] . "</h1>";
+                      } else {
+                          echo "<p>No about information available.</p>";
+                      }
+                    ?>
+          </h1>
+          <h2>
+                    <?php
+                      // Fetch job_title
+                      $job_title_sql = "SELECT job_title FROM header_info LIMIT 1";
+                      $job_title_result = $conn->query($job_title_sql);
+                      if ($job_title_result->num_rows > 0) {
+                          $job_title_row = $job_title_result->fetch_assoc();
+                          echo "<h2>" . $job_title_row['job_title'] . "</h2>";
+                      } else {
+                          echo "<p>No about information available.</p>";
+                      }
+                    ?>
+          </h2>
 
           <?php
                         // Social Media Links
@@ -251,8 +281,7 @@ if ($conn->connect_error) {
 
 </html>
 
-// Your database queries and other PHP code here...
-
+<?php
 // Close the database connection after all queries are executed
 $conn->close();
 ?>
