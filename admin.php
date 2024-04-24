@@ -29,8 +29,8 @@ include_once 'db_connection.php';
         <a href="#projects" class="menu-icon fa-solid fa-code"></a>
         <a href="#experience" class="menu-icon fa-solid fa-briefcase"></a>
         <a href="#contact" class="menu-icon fa-solid fa-envelope"></a>
-        <a href="login.php" class="menu-icon fa-solid fa-user-secret"></a>
-      </div>
+        <a href="logout.php" class="menu-icon fa-solid fa-right-from-bracket"></a>
+    </div>
 
       <!--=============== MAIN "WINDOW" ===============-->
 

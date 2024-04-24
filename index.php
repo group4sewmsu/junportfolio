@@ -40,23 +40,23 @@ include_once 'db_connection.php';
         <section class="header">
           <img class="header-img">
 
+          
           <?php
-                    // Retrieve the latest uploaded image
-                    $sql = "SELECT image_data, image_type FROM images ORDER BY id DESC LIMIT 1";
-                    $result = $conn->query($sql);
+            // Retrieve the latest uploaded image
+            $sql = "SELECT image_data, image_type FROM images ORDER BY id DESC LIMIT 1";
+            $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                        $row = $result->fetch_assoc();
-                        $imageData = $row['image_data'];
-                        $imageType = $row['image_type'];
-                        $base64 = base64_encode($imageData);
-                        $src = "data:image/" . $imageType . ";base64," . $base64;
-                        echo "<img src='$src' '><br>";
-                    } else {
-                        echo "<h3>No image uploaded yet.</h3>";
-                    }
-
-                    ?>
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $imageData = $row['image_data'];
+                $imageType = $row['image_type'];
+                $base64 = base64_encode($imageData);
+                $src = "data:image/" . $imageType . ";base64," . $base64;
+                echo "<img src='$src' class='header-img'><br>"; // Adjusted class to match CSS
+            } else {
+                echo "<h3>No image uploaded yet.</h3>";
+            }
+          ?>
 
           <h1>
                     <?php
@@ -94,14 +94,14 @@ include_once 'db_connection.php';
                         // Output the HTML with the fetched social media links
                     ?>
 
-          <div class="socials">
-            <a href="<?php echo $social_links['linkedin_link']; ?>" target="_blank" class="fab fa-linkedin-in"></a>
-            <a href="<?php echo $social_links['facebook_link']; ?>" target="_blank" class="fab fa-facebook"></a>
-            <a href="<?php echo $social_links['messenger_link']; ?>" target="_blank" class="fab fa-facebook-messenger"></a>
-            <a href="<?php echo $social_links['telegram_link']; ?>" target="_blank" class="fab fa-telegram"></a>
-            <a href="<?php echo $social_links['whatsapp_link']; ?>" target="_blank" class="fab fa-whatsapp"></a>
-            <a href="<?php echo $social_links['github_link']; ?>" target="_blank" class="fab fa-github"></a>
-          </div>
+                    <div class="socials">
+                      <a href="<?php echo $social_links['linkedin_link']; ?>" target="_blank" class="fab fa-linkedin-in"></a>
+                      <a href="<?php echo $social_links['facebook_link']; ?>" target="_blank" class="fab fa-facebook"></a>
+                      <a href="<?php echo $social_links['messenger_link']; ?>" target="_blank" class="fab fa-facebook-messenger"></a>
+                      <a href="<?php echo $social_links['telegram_link']; ?>" target="_blank" class="fab fa-telegram"></a>
+                      <a href="<?php echo $social_links['whatsapp_link']; ?>" target="_blank" class="fab fa-whatsapp"></a>
+                      <a href="<?php echo $social_links['github_link']; ?>" target="_blank" class="fab fa-github"></a>
+                    </div>
 
 
           <a href="" class="cta">Download CV</a>
@@ -115,22 +115,22 @@ include_once 'db_connection.php';
           <section class="content-card home" id="welcome-section">
             <h1>
 
-              <?php
-                                // Retrieve the latest uploaded media
-                                $sql = "SELECT media_data, media_type FROM media ORDER BY id DESC LIMIT 1";
-                                $result = $conn->query($sql);
+            <?php
+                // Retrieve the latest uploaded media
+                $sql = "SELECT media_data, media_type FROM media ORDER BY id DESC LIMIT 1";
+                $result = $conn->query($sql);
 
-                                if ($result->num_rows > 0) {
-                                    $row = $result->fetch_assoc();
-                                    $mediaData = $row['media_data'];
-                                    $mediaType = $row['media_type'];
-                                    $base64 = base64_encode($mediaData);
-                                    $src = "data:gif$mediaType;base64," . $base64;
-                                    echo "<media src='$src'><br>";
-                                } else {
-                                    echo "<h3>No media uploaded yet.</h3>";
-                                }
-                            ?>
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $mediaData = $row['media_data'];
+                    $mediaType = $row['media_type'];
+                    $base64 = base64_encode($mediaData);
+                    $src = "data:image/gif;base64," . $base64; // Specify image/gif as media type
+                    echo "<img src='$src' alt='Animated GIF' style='border-radius: var(--border-radius); width: 100%; height: auto; overflow: auto;'>"; // Adjust size and alignment
+                  } else {
+                    echo "<h3>No media uploaded yet.</h3>";
+                  }
+              ?>
 
             </h1>
           </section>
