@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['loggedin'] = true;
             
             // Redirect to dashboard.php
-            header("Location: dashboard.php");
+            header("Location: admin.php");
             exit;
         
         } else {
@@ -109,6 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group">
                 <button type="submit">Login</button>
+                <a href="index.php" class="menu-icon fa-solid fa-house" style="display: block; text-align: center;"></a>
             </div>
         </form>
     </div>
