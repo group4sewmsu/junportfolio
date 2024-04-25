@@ -30,7 +30,7 @@ include_once 'db_connection.php';
                       $src = "data:image/gif;base64," . $base64; // Specify image/gif as media type
                       echo "<div class='background-media' style='background-image: url($src);'></div>"; // Div for background media
                     }
-        ?>
+       ?>
 
     <!--=============== FONT AWESOME ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
