@@ -35,6 +35,23 @@ session_start(); // Start session
     </head>
 
     <body>
+
+      <!-- PHP code for background media -->
+      <?php
+                // Retrieve the latest uploaded media
+                $sql = "SELECT media_data, media_type FROM media_bg ORDER BY id DESC LIMIT 1";
+                $result = $conn->query($sql);
+
+                  if ($result->num_rows > 0) {
+                      $row = $result->fetch_assoc();
+                      $mediaData = $row['media_data'];
+                      $mediaType = $row['media_type'];
+                      $base64 = base64_encode($mediaData);
+                      $src = "data:image/gif;base64," . $base64; // Specify image/gif as media type
+                      echo "<div class='background-media' style='background-image: url($src);'></div>"; // Div for background media
+                    }
+       ?>
+
       <!--=============== FONT AWESOME ===============-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
