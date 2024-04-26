@@ -153,7 +153,7 @@ function updateExperience($id, $start_date, $end_date, $position, $company, $des
               $about = getAbout();
               if ($about !== null) {
                   echo "<div class='about-text'>";
-                  echo "<h3>Existing About Text:</h3>";
+                  echo "<h3>About Text:</h3>";
                   echo "<p>" . $about['about_text'] . "</p>";
                   echo "</div>";
               } else {
