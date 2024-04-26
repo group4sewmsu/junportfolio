@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set session variables
             $_SESSION['loggedin'] = true;
             
-            // Redirect to dashboard.php
+            // Redirect to admin.php
             header("Location: admin.php");
             exit;
         
