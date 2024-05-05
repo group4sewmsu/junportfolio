@@ -51,30 +51,83 @@ function updateAbout($about_text) {
 
 // Add functionality to add data to the 'experience' table
 function addExperience($start_date, $end_date, $position, $company, $description) {
-  global $conn;
-  $stmt = $conn->prepare("INSERT INTO experience (start_date, end_date, position, company, description) VALUES (?, ?, ?, ?, ?)");
-  $stmt->bind_param("sssss", $start_date, $end_date, $position, $company, $description);
-  return $stmt->execute();
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO experience (start_date, end_date, position, company, description) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $start_date, $end_date, $position, $company, $description);
+    return $stmt->execute();
 }
 
 // Read functionality to fetch data from the 'experience' table
 function getExperience() {
-  global $conn;
-  $result = $conn->query("SELECT * FROM experience");
-  $experience = array();
-  while ($row = $result->fetch_assoc()) {
-      $experience[] = $row;
-  }
-  return $experience;
+    global $conn;
+    $result = $conn->query("SELECT * FROM experience");
+    $experience = array();
+    while ($row = $result->fetch_assoc()) {
+        $experience[] = $row;
+    }
+    return $experience;
 }
 
 // Update functionality to modify data in the 'experience' table
 function updateExperience($id, $start_date, $end_date, $position, $company, $description) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE experience SET start_date = ?, end_date = ?, position = ?, company = ?, description = ? WHERE id = ?");
+    $stmt->bind_param("sssssi", $start_date, $end_date, $position, $company, $description, $id);
+    return $stmt->execute();
+}
+
+// Functions for managing the 'header_info' table
+
+// Read functionality to fetch data from the 'header_info' table
+function getHeaderInfo() {
+    global $conn;
+    $result = $conn->query("SELECT * FROM header_info");
+    return ($result->num_rows > 0) ? $result->fetch_assoc() : null;
+}
+
+// Update functionality to modify data in the 'header_info' table
+function updateHeaderInfo($name, $job_title, $linkedin_link, $facebook_link, $messenger_link, $telegram_link, $whatsapp_link, $github_link) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE header_info SET name = ?, job_title = ?, linkedin_link = ?, facebook_link = ?, messenger_link = ?, telegram_link = ?, whatsapp_link = ?, github_link = ?");
+    $stmt->bind_param("ssssssss", $name, $job_title, $linkedin_link, $facebook_link, $messenger_link, $telegram_link, $whatsapp_link, $github_link);
+    return $stmt->execute();
+}
+
+// Functions for managing the 'images' table
+
+// Add functionality to add image data to the 'images' table
+function addImages($image_data, $image_type) {
   global $conn;
-  $stmt = $conn->prepare("UPDATE experience SET start_date = ?, end_date = ?, position = ?, company = ?, description = ? WHERE id = ?");
-  $stmt->bind_param("sssssi", $start_date, $end_date, $position, $company, $description, $id);
+  $stmt = $conn->prepare("INSERT INTO images (image_data, image_type) VALUES (?, ?)");
+  $stmt->bind_param("ss", $image_data, $image_type);
   return $stmt->execute();
 }
+
+// Read functionality to fetch image data from the 'images' table
+function getImages() {
+  global $conn;
+  $result = $conn->query("SELECT * FROM images");
+  return ($result->num_rows > 0) ? $result->fetch_assoc() : null;
+}
+
+// Update functionality to modify image data in the 'images' table
+function updateImages($image_data, $image_type) {
+  global $conn;
+  $stmt = $conn->prepare("UPDATE images SET image_data = ?, image_type = ?");
+  $stmt->bind_param("ss", $image_data, $image_type);
+  return $stmt->execute();
+}
+
+// Functions for managing the 'project' table
+
+// Add functionality to add data to the 'project' table
+function addProject($project_name, $project_description, $project_link) {
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO project (project_name, project_description, project_link) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $project_name, $project_description, $project_link);
+    return $stmt->execute();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -133,9 +186,28 @@ function updateExperience($id, $start_date, $end_date, $position, $company, $des
             <!--=============== HOME ===============-->
 
             <section class="content-card home" id="welcome-section">
-                <h1>
 
+                <h1>
+                    <!-- Header info here -->
+                    <?php
+                    $headerInfo = getHeaderInfo();
+                    if ($headerInfo !== null) {
+                        echo "<span>{$headerInfo['name']}</span>";
+                        echo "<p>{$headerInfo['job_title']}</p>";
+                    }
+                    ?>
                 </h1>
+                <form action="admin.php" method="post">
+                    <input type="text" name="name" placeholder="Name" value="<?php echo $headerInfo['name'] ?? ''; ?>">
+                    <input type="text" name="job_title" placeholder="Job Title" value="<?php echo $headerInfo['job_title'] ?? ''; ?>">
+                    <input type="text" name="linkedin_link" placeholder="LinkedIn Link" value="<?php echo $headerInfo['linkedin_link'] ?? ''; ?>">
+                    <input type="text" name="facebook_link" placeholder="Facebook Link" value="<?php echo $headerInfo['facebook_link'] ?? ''; ?>">
+                    <input type="text" name="messenger_link" placeholder="Messenger Link" value="<?php echo $headerInfo['messenger_link'] ?? ''; ?>">
+                    <input type="text" name="telegram_link" placeholder="Telegram Link" value="<?php echo $headerInfo['telegram_link'] ?? ''; ?>">
+                    <input type="text" name="whatsapp_link" placeholder="WhatsApp Link" value="<?php echo $headerInfo['whatsapp_link'] ?? ''; ?>">
+                    <input type="text" name="github_link" placeholder="GitHub Link" value="<?php echo $headerInfo['github_link'] ?? ''; ?>">
+                    <button type="submit" name="update_header_info">Update Header Info</button>
+                </form>
             </section>
 
             <!--=============== ABOUT ME ===============-->
@@ -168,12 +240,23 @@ function updateExperience($id, $start_date, $end_date, $position, $company, $des
             <section class="content-card projects" id="projects">
                 <h1>Projects</h1>
                 <div class="col-2 project-list">
-
+                    <!-- Button to add a new project -->
+                    <button onclick="toggleAddProjectForm()">Add Project</button>
                 </div>
                 <a href="https://github.com/group4sewmsu">see more...</a>
             </section>
 
-            <!--=============== EXPERIENCE ===============-->
+            <!-- Form to add a new project -->
+            <div id="add-project-form" style="display: none;">
+                <form action="admin.php" method="post">
+                    <input type="text" name="project_name" placeholder="Project Name" required>
+                    <textarea name="project_description" placeholder="Project Description" required></textarea>
+                    <input type="text" name="project_link" placeholder="Project Link" required>
+                    <button type="submit" name="add_project">Add Project</button>
+                </form>
+            </div>
+
+            
 
             <!--=============== EXPERIENCE ===============-->
 
@@ -204,9 +287,31 @@ function updateExperience($id, $start_date, $end_date, $position, $company, $des
                 }
                 ?>
             </section>
+             <!--=============== IMAGE ===============-->
+
+             <section class="content-card image" id="image">
+                <h1>Image</h1>
+                <form action="admin.php" method="post" enctype="multipart/form-data">
+                    <input type="file" name="image" accept="image/*" required>
+                    <button type="submit" name="update_image">Update Image</button>
+                </form>
+            </section>
 
         </div>
     </div>
+
+    <!-- JavaScript to toggle the add project form -->
+    <script>
+        function toggleAddProjectForm() {
+            var x = document.getElementById("add-project-form");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 
 </html>
@@ -224,15 +329,52 @@ if (isset($_POST['update_about'])) {
 
 // Add new experience
 if (isset($_POST['add_experience'])) {
-  $start_date = $_POST['start_date'];
-  $end_date = $_POST['end_date'];
-  $position = $_POST['position'];
-  $company = $_POST['company'];
-  $description = $_POST['description'];
-  addExperience($start_date, $end_date, $position, $company, $description);
-  header("Location: admin.php"); // Redirect to admin after adding
-  exit();
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $position = $_POST['position'];
+    $company = $_POST['company'];
+    $description = $_POST['description'];
+    addExperience($start_date, $end_date, $position, $company, $description);
+    header("Location: admin.php"); // Redirect to admin after adding
+    exit();
 }
+
+// Update header info
+if (isset($_POST['update_header_info'])) {
+    $name = $_POST['name'];
+    $job_title = $_POST['job_title'];
+    $linkedin_link = $_POST['linkedin_link'];
+    $facebook_link = $_POST['facebook_link'];
+    $messenger_link = $_POST['messenger_link'];
+    $telegram_link = $_POST['telegram_link'];
+    $whatsapp_link = $_POST['whatsapp_link'];
+    $github_link = $_POST['github_link'];
+    updateHeaderInfo($name, $job_title, $linkedin_link, $facebook_link, $messenger_link, $telegram_link, $whatsapp_link, $github_link);
+    header("Location: admin.php"); // Redirect to admin after updating
+    exit();
+}
+
+// Handle form submission for updating image
+if (isset($_POST['update_image'])) {
+  if (isset($_FILES['image'])) {
+      $image_data = file_get_contents($_FILES['image']['tmp_name']);
+      $image_type = $_FILES['image']['type'];
+      updateImages($image_data, $image_type);
+      header("Location: admin.php"); // Redirect to admin after updating
+      exit();
+  }
+}
+
+// Handle form submission for adding a new project
+if (isset($_POST['add_project'])) {
+    $project_name = $_POST['project_name'];
+    $project_description = $_POST['project_description'];
+    $project_link = $_POST['project_link'];
+    addProject($project_name, $project_description, $project_link);
+    header("Location: admin.php"); // Redirect to admin after adding
+    exit();
+}
+
 // Close the database connection
 $conn->close();
 ?>
